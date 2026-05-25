@@ -299,7 +299,7 @@ async function doLogin() {
     const data = await res.json();
     if (data.success) {
       showMsg('login-msg', 'Welcome back! Redirecting...', 'success');
-      setTimeout(() => window.location.href = '/', 800);
+      setTimeout(() => window.location.href = '/dashboard', 800);
     } else {
       showMsg('login-msg', data.message || 'Invalid credentials.', 'error');
       btn.disabled = false; btn.textContent = 'Sign In';

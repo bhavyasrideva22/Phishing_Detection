@@ -10,7 +10,7 @@ from report_generator import generate_report
 import base64
 
 app = Flask(__name__)
-app.secret_key = "phishdetect_secret_2024"
+app.secret_key = os.environ.get("SECRET_KEY", "phishdetect_secret_2024")
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
 
@@ -21,7 +21,11 @@ init_db()
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/')
+@app.route("/")
+def home():
+    return "Running"
+
+@app.route('/dashboard')
 def index():
     if 'user_id' not in session:
         return redirect(url_for('login'))
@@ -210,5 +214,5 @@ def stats():
         'safe': safe
     })
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
