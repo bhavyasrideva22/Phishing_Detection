@@ -1,0 +1,46 @@
+============================================================
+       PHISHING DETECTION SECURITY REPORT
+============================================================
+
+Report Generated: 2026-05-25 14:17:16
+Analyst: admin
+Scan ID: #9
+Scan Date: 2026-05-25 08:41:38
+
+------------------------------------------------------------
+THREAT SUMMARY
+------------------------------------------------------------
+Threat Level:    SAFE
+Risk Score:      0/100
+ML Prediction:   UNKNOWN
+ML Confidence:   0.0%
+
+------------------------------------------------------------
+THREAT INDICATORS
+------------------------------------------------------------
+  1. No significant threats detected
+
+------------------------------------------------------------
+DETECTED URLS
+------------------------------------------------------------
+  No URLs detected.
+
+------------------------------------------------------------
+KEYWORDS DETECTED
+------------------------------------------------------------
+  No suspicious keywords detected.
+
+------------------------------------------------------------
+EMAIL CONTENT PREVIEW
+------------------------------------------------------------
+[Image uploaded: google-drive-file-share-snippet.png] Image file received. Manual analysis required.
+
+============================================================
+SOC RECOMMENDATION
+============================================================
+✓  SAFE: This email appears to be legitimate based on
+   current analysis. Continue with normal precautions.
+
+============================================================
+     END OF REPORT — PhishDetect AI Security System
+============================================================

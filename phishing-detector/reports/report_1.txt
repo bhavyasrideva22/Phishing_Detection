@@ -1,0 +1,46 @@
+============================================================
+       PHISHING DETECTION SECURITY REPORT
+============================================================
+
+Report Generated: 2026-05-25 14:16:45
+Analyst: test
+Scan ID: #1
+Scan Date: 2026-05-25 08:25:49
+
+------------------------------------------------------------
+THREAT SUMMARY
+------------------------------------------------------------
+Threat Level:    SAFE
+Risk Score:      20/100
+ML Prediction:   PHISHING
+ML Confidence:   70.0%
+
+------------------------------------------------------------
+THREAT INDICATORS
+------------------------------------------------------------
+  1. ML model: Likely phishing (70%)
+
+------------------------------------------------------------
+DETECTED URLS
+------------------------------------------------------------
+  No URLs detected.
+
+------------------------------------------------------------
+KEYWORDS DETECTED
+------------------------------------------------------------
+  No suspicious keywords detected.
+
+------------------------------------------------------------
+EMAIL CONTENT PREVIEW
+------------------------------------------------------------
+[Image uploaded: Screenshot_25-5-2026_135540_www.cyberpilot.io.jpeg] Image file received. Manual analysis required.
+
+============================================================
+SOC RECOMMENDATION
+============================================================
+✓  SAFE: This email appears to be legitimate based on
+   current analysis. Continue with normal precautions.
+
+============================================================
+     END OF REPORT — PhishDetect AI Security System
+============================================================

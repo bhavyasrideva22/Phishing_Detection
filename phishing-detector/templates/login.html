@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhishDetect AI — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"] {
+  --bg: #0a0d14;
+  --bg2: #111520;
+  --bg3: #161c2d;
+  --card: #1a2035;
+  --border: #2a3550;
+  --accent: #00d4ff;
+  --accent2: #7c3aed;
+  --danger: #ff4757;
+  --warning: #ffa502;
+  --success: #2ed573;
+  --text: #e8eaf6;
+  --text2: #8892b0;
+  --text3: #4a5568;
+  --glow: rgba(0,212,255,0.15);
+  --glow2: rgba(124,58,237,0.15);
+}
+:root[data-theme="light"] {
+  --bg: #f0f4ff;
+  --bg2: #e8eeff;
+  --bg3: #ffffff;
+  --card: #ffffff;
+  --border: #c8d0e7;
+  --accent: #0099cc;
+  --accent2: #6d28d9;
+  --danger: #e53e3e;
+  --warning: #d69e2e;
+  --success: #38a169;
+  --text: #1a202c;
+  --text2: #4a5568;
+  --text3: #a0aec0;
+  --glow: rgba(0,153,204,0.1);
+  --glow2: rgba(109,40,217,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.bg-grid {
+  position: fixed; inset:0; z-index:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.bg-glow {
+  position: fixed;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+  top: -200px; left: -200px;
+  pointer-events: none;
+}
+.bg-glow2 {
+  position: fixed;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+  bottom: -150px; right: -150px;
+  pointer-events: none;
+}
+.theme-btn {
+  position: fixed; top:20px; right:20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  z-index:100;
+  transition: all 0.2s;
+}
+.theme-btn:hover { border-color: var(--accent); }
+
+.login-wrap {
+  position: relative; z-index:10;
+  width: 100%; max-width: 440px;
+  padding: 20px;
+}
+.logo-area {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.logo-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 12px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 0 30px var(--glow2);
+}
+.logo-area h1 {
+  font-size: 26px; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+.logo-area p { color: var(--text2); font-size: 13px; margin-top: 4px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.tabs {
+  display: flex;
+  background: var(--bg2);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.tab {
+  flex:1; text-align:center;
+  padding: 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px; font-weight: 500;
+  color: var(--text2);
+  transition: all 0.2s;
+}
+.tab.active {
+  background: var(--bg3);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.form-group { margin-bottom: 16px; }
+label {
+  display: block;
+  font-size: 12px; font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s;
+  outline: none;
+}
+input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.msg { margin-top: 12px; text-align: center; font-size: 13px; border-radius: 8px; padding: 10px; display:none; }
+.msg.error { background: rgba(255,71,87,0.1); color: var(--danger); border: 1px solid rgba(255,71,87,0.2); }
+.msg.success { background: rgba(46,213,115,0.1); color: var(--success); border: 1px solid rgba(46,213,115,0.2); }
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+.hint { font-size: 11px; color: var(--text3); text-align:center; margin-top: 14px; }
+.hint span { color: var(--accent); cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="bg-glow2"></div>
+
+<button class="theme-btn" onclick="toggleTheme()">🌙 Dark</button>
+
+<div class="login-wrap">
+  <div class="logo-area">
+    <div class="logo-icon">🛡</div>
+    <h1>PhishDetect AI</h1>
+    <p>AI-Powered Email Security Platform</p>
+  </div>
+
+  <div class="card">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('login')">Sign In</div>
+      <div class="tab" onclick="switchTab('register')">Register</div>
+    </div>
+
+    <!-- Login Panel -->
+    <div class="form-panel active" id="login-panel">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="l-username" placeholder="Enter your username" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="l-password" placeholder="Enter your password" autocomplete="current-password">
+      </div>
+      <button class="btn" id="login-btn" onclick="doLogin()">Sign In</button>
+      <div class="msg" id="login-msg"></div>
+      <p class="hint">Demo: username <span onclick="fillDemo()">admin</span> / password <span onclick="fillDemo()">admin123</span></p>
+    </div>
+
+    <!-- Register Panel -->
+    <div class="form-panel" id="register-panel">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="r-username" placeholder="Choose a username">
+      </div>
+      <div class="form-group">
+        <label>Email (optional)</label>
+        <input type="email" id="r-email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="r-password" placeholder="Create a password">
+      </div>
+      <button class="btn" id="reg-btn" onclick="doRegister()">Create Account</button>
+      <div class="msg" id="register-msg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.querySelector('.theme-btn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+
+(function() {
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.querySelector('.theme-btn').textContent = saved === 'dark' ? '🌙 Dark' : '☀️ Light';
+})();
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', (tab === 'login' && i===0) || (tab === 'register' && i===1));
+  });
+  document.getElementById('login-panel').classList.toggle('active', tab === 'login');
+  document.getElementById('register-panel').classList.toggle('active', tab === 'register');
+}
+
+function showMsg(id, text, type) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'msg ' + type;
+  el.style.display = 'block';
+}
+
+function fillDemo() {
+  document.getElementById('l-username').value = 'admin';
+  document.getElementById('l-password').value = 'admin123';
+}
+
+async function doLogin() {
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true; btn.textContent = 'Signing in...';
+  const username = document.getElementById('l-username').value.trim();
+  const password = document.getElementById('l-password').value;
+  if (!username || !password) {
+    showMsg('login-msg', 'Please enter username and password.', 'error');
+    btn.disabled = false; btn.textContent = 'Sign In'; return;
+  }
+  try {
+    const res = await fetch('/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({username, password})
+    });
+    const data = await res.json();
+    if (data.success) {
+      showMsg('login-msg', 'Welcome back! Redirecting...', 'success');
+      setTimeout(() => window.location.href = '/', 800);
+    } else {
+      showMsg('login-msg', data.message || 'Invalid credentials.', 'error');
+      btn.disabled = false; btn.textContent = 'Sign In';
+    }
+  } catch(e) {
+    showMsg('login-msg', 'Connection error. Please try again.', 'error');
+    btn.disabled = false; btn.textContent = 'Sign In';
+  }
+}
+
+async function doRegister() {
+  const btn = document.getElementById('reg-btn');
+  btn.disabled = true; btn.textContent = 'Creating account...';
+  const username = document.getElementById('r-username').value.trim();
+  const email = document.getElementById('r-email').value.trim();
+  const password = document.getElementById('r-password').value;
+  if (!username || !password) {
+    showMsg('register-msg', 'Username and password are required.', 'error');
+    btn.disabled = false; btn.textContent = 'Create Account'; return;
+  }
+  if (password.length < 6) {
+    showMsg('register-msg', 'Password must be at least 6 characters.', 'error');
+    btn.disabled = false; btn.textContent = 'Create Account'; return;
+  }
+  try {
+    const res = await fetch('/register', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({username, password, email})
+    });
+    const data = await res.json();
+    if (data.success) {
+      showMsg('register-msg', 'Account created! Please sign in.', 'success');
+      setTimeout(() => switchTab('login'), 1500);
+    } else {
+      showMsg('register-msg', data.message || 'Registration failed.', 'error');
+    }
+  } catch(e) {
+    showMsg('register-msg', 'Connection error. Please try again.', 'error');
+  }
+  btn.disabled = false; btn.textContent = 'Create Account';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    if (document.getElementById('login-panel').classList.contains('active')) doLogin();
+    else doRegister();
+  }
+});
+</script>
+</body>
+</html>
