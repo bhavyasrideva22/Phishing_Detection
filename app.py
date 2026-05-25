@@ -21,12 +21,12 @@ init_db()
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route("/")
-def home():
+@app.route("/health")
+def health():
     return "Running"
 
-@app.route('/dashboard')
-def index():
+@app.route("/")
+def home():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     return render_template('index.html', username=session.get('username'))
